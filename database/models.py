@@ -19,7 +19,9 @@ class Report(Base):
     telegram_id = Column(Integer)
     report_text = Column(VARCHAR)
     photo_links = Column(VARCHAR)
-    state = Column(VARCHAR)
+    media_group_id = Column(VARCHAR)
+    create_state = Column(VARCHAR)
+    admin_state = Column(VARCHAR)
     created_at = Column(TIMESTAMP)
     solution_at = Column(TIMESTAMP)
     

@@ -1,3 +1,8 @@
 class UserRole:
     USER = 0
     ADMIN = 1
+
+
+class AdvertCreateState:
+    ONLY_TEXT = 0
+    FINISHED = 1

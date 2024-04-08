@@ -1,6 +1,6 @@
 from database.db import SessionLocal
 from database.models import User, Report
-from enums import UserRole, AdvertCreateState
+from enums import UserRole, ReportCreateState
 
 
 def create_user(telegram_id: int, phone_number: str, username: str) -> User:
@@ -22,7 +22,7 @@ def create_report(telegram_id: int, report_text: str) -> Report:
         db_report = Report(
             telegram_id=telegram_id,
             report_text=report_text,
-            create_state=AdvertCreateState.ONLY_TEXT
+            create_state=ReportCreateState.ONLY_TEXT
         )
         session.add(db_report)
         session.commit()

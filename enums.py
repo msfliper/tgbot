@@ -3,6 +3,6 @@ class UserRole:
     ADMIN = 1
 
 
-class AdvertCreateState:
+class ReportCreateState:
     ONLY_TEXT = 0
     FINISHED = 1

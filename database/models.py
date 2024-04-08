@@ -20,6 +20,7 @@ class Report(Base):
     report_text = Column(VARCHAR)
     photo_links = Column(VARCHAR)
     media_group_id = Column(VARCHAR)
+    message_id = Column(VARCHAR)
     create_state = Column(VARCHAR)
     admin_state = Column(VARCHAR)
     created_at = Column(TIMESTAMP)

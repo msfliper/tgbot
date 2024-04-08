@@ -2,6 +2,9 @@ from aiogram import types
 from aiogram.fsm.context import FSMContext
 from States import UserStates
 from view import messages, keyboards
+from database.crud.update import report_set_finished_status
+from utils.report_utils import get_current_report_id, send_report_to_id
+from config import settings
 
 
 async def get_phone_number(message: types.Message, state: FSMContext):
@@ -26,3 +29,11 @@ async def get_report_photos(message: types.Message, state: FSMContext):
     await message.answer(messages.REPORT_PHOTO,
                          reply_markup=keyboards.get_skip_photo_kb())
 
+
+async def successful_report(message: types.Message, state: FSMContext):
+    await message.answer(messages.SUCCESSFUL_REPORT_CREATE)
+    report_id = await get_current_report_id(state)
+    message_id = await send_report_to_id(report_id, settings.ADMIN_CHAT_ID)
+    report_set_finished_status(report_id, message_id)
+
+    await main_menu(message, state)

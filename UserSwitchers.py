@@ -3,8 +3,10 @@ from aiogram.fsm.context import FSMContext
 from States import UserStates
 from view import messages, keyboards
 from database.crud.update import report_set_finished_status
+from database.crud.get import get_user
 from utils.report_utils import get_current_report_id, send_report_to_id
 from config import settings
+from enums import UserRole
 
 
 async def get_phone_number(message: types.Message, state: FSMContext):
@@ -14,8 +16,12 @@ async def get_phone_number(message: types.Message, state: FSMContext):
 
 async def main_menu(message: types.Message, state: FSMContext):
     await state.set_state(UserStates.MAIN_MENU)
+    if get_user(message.from_user.id).role == UserRole.USER:
+        await message.answer(messages.MAIN_MENU,
+                             reply_markup=keyboards.get_main_menu_kb())
+        return
     await message.answer(messages.MAIN_MENU,
-                         reply_markup=keyboards.get_main_menu_kb())
+                         reply_markup=keyboards.get_main_menu_admin_kb())
 
 
 async def create_report(message: types.Message, state: FSMContext):

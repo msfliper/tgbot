@@ -21,8 +21,7 @@ def create_report(telegram_id: int, report_text: str) -> Report:
     with SessionLocal() as session:
         db_report = Report(
             telegram_id=telegram_id,
-            report_text=report_text,
-            create_state=ReportCreateState.ONLY_TEXT
+            report_text=report_text
         )
         session.add(db_report)
         session.commit()

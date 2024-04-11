@@ -1,8 +1,8 @@
 from aiogram.fsm.context import FSMContext
-from aiogram import types
 from database.crud.get import get_report, get_user
 from aiogram.utils.media_group import MediaGroupBuilder
 from loader import bot
+from datatables import get_admin_status_dict
 
 
 async def get_current_report_id(state: FSMContext) -> int:
@@ -16,7 +16,9 @@ def get_str_report(report_id: int) -> str:
 
     str_report = (f"Жалоба от пользователя с ником @{user.username}\n"
                   f"Номер телефона: {user.phone_number}\n\n"
-                  f"Коментарий: {report.report_text}")
+                  f"Коментарий: {report.report_text}\n\n"
+                  f"ID: {report.report_id}\n"
+                  f"Статус: {get_admin_status_dict()[report.admin_status]}")
 
     return str_report
 

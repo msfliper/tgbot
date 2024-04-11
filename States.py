@@ -6,3 +6,9 @@ class UserStates(StatesGroup):
     MAIN_MENU = State()
     REPORT_TEXT = State()
     REPORT_PHOTO = State()
+
+    ADMIN_MENU = State()
+    REPORT_WORK = State()
+
+    REPORT_HIRE = State()
+    REPORT_SOLUTION = State()

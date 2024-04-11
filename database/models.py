@@ -9,20 +9,21 @@ class User(Base):
     telegram_id = Column(BigInteger, primary_key=True)
     phone_number = Column(VARCHAR)
     username = Column(VARCHAR)
-    role = Column(Integer)
+    role = Column(Integer, default=0)
 
 
 class Report(Base):
     __tablename__ = "reports"
 
     report_id = Column(Integer, primary_key=True, autoincrement=True)
-    telegram_id = Column(Integer)
+    telegram_id = Column(BigInteger)
     report_text = Column(VARCHAR)
     photo_links = Column(VARCHAR)
     media_group_id = Column(VARCHAR)
     message_id = Column(VARCHAR)
-    create_state = Column(VARCHAR)
-    admin_state = Column(VARCHAR)
+    create_state = Column(Integer, default=0)
+    admin_status = Column(Integer, default=0)
+    admin = Column(BigInteger)
     created_at = Column(TIMESTAMP)
     solution_at = Column(TIMESTAMP)
     

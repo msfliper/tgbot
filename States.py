@@ -8,7 +8,10 @@ class UserStates(StatesGroup):
     REPORT_PHOTO = State()
 
     ADMIN_MENU = State()
-    REPORT_WORK = State()
+    REPORT_WORK_CHOICE = State()
 
+    SINGLE_REPORT_WORK = State()
     REPORT_HIRE = State()
     REPORT_SOLUTION = State()
+    ALL_REPORT_IN_WORK = State()
+    ALL_REPORTS_VIEWED = State()

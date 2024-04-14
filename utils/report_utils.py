@@ -3,6 +3,8 @@ from database.crud.get import get_report, get_user
 from aiogram.utils.media_group import MediaGroupBuilder
 from loader import bot
 from datatables import get_admin_status_dict
+from typing import List
+from view import keyboards
 
 
 async def get_current_report_id(state: FSMContext) -> int:
@@ -25,6 +27,7 @@ def get_str_report(report_id: int) -> str:
 
 async def send_report_to_id(report_id: int, chat_id) -> int:
     report = get_report(report_id)
+    user = get_user(report.telegram_id)
 
     if report.photo_links:
         media_group = MediaGroupBuilder(caption=get_str_report(report_id))
@@ -33,8 +36,21 @@ async def send_report_to_id(report_id: int, chat_id) -> int:
 
         msg = await bot.send_media_group(media=media_group.build(),
                                          chat_id=chat_id)
+        await bot.send_message(text="Чат в пользователем",
+                               reply_markup=keyboards.get_user_contact_button(user.username),
+                               chat_id=chat_id)
         return msg[0].message_id
 
     msg = await bot.send_message(text=get_str_report(report_id),
-                                 chat_id=chat_id)
+                                 chat_id=chat_id,
+                                 reply_markup=keyboards.get_user_contact_button(user.username))
     return msg.message_id
+
+
+async def current_not_hire_id(state: FSMContext) -> List[int]:
+    data = await state.get_data()
+    all_not_hire_reports = data["all_not_hire_reports"]
+    print(all_not_hire_reports)
+    if (type(all_not_hire_reports) != str) or (all_not_hire_reports == ''):
+        return []
+    return list(map(int, all_not_hire_reports.split("&")))

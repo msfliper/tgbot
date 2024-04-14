@@ -15,13 +15,15 @@ async def get_phone_number(message: types.Message, state: FSMContext):
 
 
 async def main_menu(message: types.Message, state: FSMContext):
-    await state.set_state(UserStates.MAIN_MENU)
     if get_user(message.from_user.id).role == UserRole.USER:
+        await state.set_state(UserStates.MAIN_MENU)
         await message.answer(messages.MAIN_MENU,
                              reply_markup=keyboards.get_main_menu_kb())
         return
-    await message.answer(messages.MAIN_MENU,
-                         reply_markup=keyboards.get_main_menu_admin_kb())
+    else:
+        await state.set_state(UserStates.ADMIN_MENU)
+        await message.answer(messages.ADMIN_MENU,
+                             reply_markup=keyboards.get_admin_menu_kb())
 
 
 async def create_report(message: types.Message, state: FSMContext):

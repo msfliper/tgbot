@@ -3,7 +3,7 @@ from aiogram.fsm.context import FSMContext
 from States import UserStates
 from view import messages, keyboards
 from database.crud.update import report_set_finished_status
-from database.crud.get import get_user
+from database.crud.get import get_user, get_report
 from utils.report_utils import get_current_report_id, send_report_to_id
 from config import settings
 from enums import UserRole
@@ -43,5 +43,4 @@ async def successful_report(message: types.Message, state: FSMContext):
     report_id = await get_current_report_id(state)
     message_id = await send_report_to_id(report_id, settings.ADMIN_CHAT_ID)
     report_set_finished_status(report_id, message_id)
-
     await main_menu(message, state)

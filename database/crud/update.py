@@ -44,7 +44,15 @@ def report_hire(report_id: int, admin_id: int):
     with SessionLocal() as session:
         session.query(Report).where(Report.report_id == report_id).update({Report.admin: admin_id,
                                                                            Report.admin_status:
-                                                                               ReportAdminStatus.IN_WORK},
+                                                                           ReportAdminStatus.IN_WORK},
+                                                                          synchronize_session=False)
+        session.commit()
+
+
+def report_reject(report_id: int):
+    with SessionLocal() as session:
+        session.query(Report).where(Report.report_id == report_id).update({Report.admin_status:
+                                                                           ReportAdminStatus.REJECT},
                                                                           synchronize_session=False)
         session.commit()
 
@@ -52,7 +60,7 @@ def report_hire(report_id: int, admin_id: int):
 def report_solution(report_id: int):
     with SessionLocal() as session:
         session.query(Report).where(Report.report_id == report_id).update({Report.admin_status:
-                                                                           ReportAdminStatus.RESOLVED,
+                                                                               ReportAdminStatus.RESOLVED,
                                                                            Report.solution_at: datetime.datetime.now()},
                                                                           synchronize_session=False)
         session.commit()

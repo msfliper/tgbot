@@ -51,6 +51,7 @@ def get_report_hire_kb() -> ReplyKeyboardBuilder.as_markup:
     report_hire = ReplyKeyboardBuilder()
 
     report_hire.row(KeyboardButton(text=buttons.report_hire))
+    report_hire.row(KeyboardButton(text=buttons.report_reject))
     report_hire.row(KeyboardButton(text=buttons.back_to_main_menu_button))
 
     return report_hire.as_markup()
@@ -77,7 +78,8 @@ def get_report_work_choice_kb() -> ReplyKeyboardBuilder.as_markup:
 def get_all_reports_action_kb() -> ReplyKeyboardBuilder.as_markup:
     all_reports_action = ReplyKeyboardBuilder()
 
-    all_reports_action.row(KeyboardButton(text=buttons.report_hire),
+    all_reports_action.row(KeyboardButton(text=buttons.report_reject),
+                           KeyboardButton(text=buttons.report_hire),
                            KeyboardButton(text=buttons.next_report))
     all_reports_action.row(KeyboardButton(text=buttons.back_to_main_menu_button))
 
@@ -100,3 +102,13 @@ def get_user_contact_button(username: str) -> InlineKeyboardBuilder.as_markup:
                                           url=f"https://t.me/{username}"))
 
     return user_contact.as_markup()
+
+
+def get_choice_report_list_kb() -> ReplyKeyboardBuilder.as_markup:
+    choice_report_list = ReplyKeyboardBuilder()
+
+    choice_report_list.row(KeyboardButton(text=buttons.all_not_hire))
+    choice_report_list.row(KeyboardButton(text=buttons.my_in_work))
+    choice_report_list.row(KeyboardButton(text=buttons.overdue_reports))
+
+    return choice_report_list.as_markup()

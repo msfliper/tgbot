@@ -57,4 +57,7 @@ async def all_repost_viewed(message: types.Message, state: FSMContext):
                          reply_markup=keyboards.get_all_report_viewed_choice_kb())
 
 
-
+async def choice_report_list(message: types.Message, state: FSMContext):
+    await state.set_state(UserStates.CHOICE_REPORT_LIST)
+    await message.answer(messages.CHOICE_REPORT_LIST,
+                         reply_markup=keyboards.get_choice_report_list_kb())

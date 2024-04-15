@@ -25,7 +25,7 @@ async def get_report_id(message: types.Message, state: FSMContext):
 
         elif report.admin_status == ReportAdminStatus.IN_WORK:
             if message.from_user.id != report.admin:
-                await message.answer(messages.ANOTHER_ADMIN_HIRING)
+                await message.answer(messages.ANOTHER_ADMIN_HIRING_OR_REJECT)
                 await UserSwitchers.main_menu(message, state)
                 return
 
@@ -34,5 +34,5 @@ async def get_report_id(message: types.Message, state: FSMContext):
             await AdminSwitchers.report_solution(message, state)
 
         else:
-            await message.answer(messages.ALREADY_SOLUTION)
+            await message.answer(messages.ALREADY_SOLUTION_OR_REJECT)
             await UserSwitchers.main_menu(message, state)

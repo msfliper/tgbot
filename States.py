@@ -15,3 +15,5 @@ class UserStates(StatesGroup):
     REPORT_SOLUTION = State()
     ALL_REPORT_IN_WORK = State()
     ALL_REPORTS_VIEWED = State()
+
+    CHOICE_REPORT_LIST = State()

@@ -10,3 +10,11 @@ services:
       POSTGRES_DB: reports_db
     ports:
       - "5436:5432"
+  bot:
+    build: .
+    command: sh -c "python -m main"
+    env_file:
+      - ./.env
+    restart: always
+    depends_on:
+      - db

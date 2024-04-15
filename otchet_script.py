@@ -2,7 +2,7 @@ import asyncio
 import datetime
 
 
-from database.crud.get import get_last_72_hours_reports
+from database_to_script.crud import get_last_72_hours_reports
 from enums import ReportAdminStatus
 import docx
 from docx.enum.text import WD_ALIGN_PARAGRAPH

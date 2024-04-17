@@ -26,4 +26,5 @@ class Report(Base):
     admin = Column(BigInteger)
     created_at = Column(TIMESTAMP)
     solution_at = Column(TIMESTAMP)
+    overdue_message = Column(Boolean)
     

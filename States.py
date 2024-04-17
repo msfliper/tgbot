@@ -17,3 +17,5 @@ class UserStates(StatesGroup):
     ALL_REPORTS_VIEWED = State()
 
     CHOICE_REPORT_LIST = State()
+
+    NEW_ADMIN = State()

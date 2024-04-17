@@ -1,6 +1,6 @@
 from database.db import SessionLocal
 from database.models import User, Report
-from enums import ReportCreateState, ReportAdminStatus
+from enums import ReportCreateState, ReportAdminStatus, UserRole
 import datetime
 
 
@@ -63,4 +63,11 @@ def report_solution(report_id: int):
                                                                                ReportAdminStatus.RESOLVED,
                                                                            Report.solution_at: datetime.datetime.now()},
                                                                           synchronize_session=False)
+        session.commit()
+
+
+def user_to_administrator(telegram_id: int):
+    with SessionLocal() as session:
+        session.query(User).where(User.telegram_id == telegram_id).update({User.role: UserRole.ADMIN},
+                                                                           synchronize_session=False)
         session.commit()

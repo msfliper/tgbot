@@ -61,3 +61,9 @@ async def choice_report_list(message: types.Message, state: FSMContext):
     await state.set_state(UserStates.CHOICE_REPORT_LIST)
     await message.answer(messages.CHOICE_REPORT_LIST,
                          reply_markup=keyboards.get_choice_report_list_kb())
+
+
+async def new_admin(message: types.Message, state: FSMContext):
+    await state.set_state(UserStates.NEW_ADMIN)
+    await message.answer(messages.NEW_ADMIN,
+                         reply_markup=keyboards.get_back_to_main_menu_kb())

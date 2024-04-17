@@ -26,3 +26,5 @@ contact = 'Контакт'
 all_not_hire = "Никем не взятые в работу"
 my_in_work = "Взятые в работу мной"
 overdue_reports = 'Просроченные'
+
+new_admin = '/new_admin'

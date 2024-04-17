@@ -42,3 +42,7 @@ def get_last_72_hours_reports() -> List[Report]:
         return session.query(Report).where(Report.created_at > three_days_ago_datatime).all()
 
 
+def get_user_from_phone(phone: str) -> User:
+    with SessionLocal() as session:
+        return session.query(User).where(User.phone_number == phone).one()
+

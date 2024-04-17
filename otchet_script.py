@@ -9,7 +9,7 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.shared import Pt
 from loader import bot
 from aiogram.types import FSInputFile
-
+from config import settings
 
 def create_otchet_1() -> str:
     reports = get_last_72_hours_reports()
@@ -92,10 +92,10 @@ async def send_othcet():
     othchet1_filename = create_otchet_1()
     othchet2_filename = create_otchet_2()
     await bot.send_message(text="Отчет за 3 дня",
-                           chat_id=-4165133164)
-    await bot.send_document(chat_id=-4165133164,
+                           chat_id=settings.ADMIN_CHAT_ID)
+    await bot.send_document(chat_id=settings.ADMIN_CHAT_ID,
                             document=FSInputFile(path=f"./{othchet1_filename}"))
-    await bot.send_document(chat_id=-4165133164,
+    await bot.send_document(chat_id=settings.ADMIN_CHAT_ID,
                             document=FSInputFile(path=f"./{othchet2_filename}"))
 
 asyncio.run(send_othcet())

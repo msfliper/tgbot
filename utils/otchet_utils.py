@@ -42,7 +42,7 @@ def create_otchet_1() -> str:
                               f"Всего жалоб, которые не могут быть рассмотрены: {cannot_be_considered}\n")
 
     paragraph2.paragraph_format.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    file_name = f"othchet1_{datatime_now.day}_{datatime_now.month}_{datatime_now.year}.docx"
+    file_name = f"Onshyi_othchet_{datatime_now.day}_{datatime_now.month}_{datatime_now.year}.docx"
     otchet_1.save(file_name)
     return file_name
 
@@ -82,7 +82,7 @@ def create_otchet_2() -> str:
     paragraph3 = otchet_2.add_paragraph()
     run3 = paragraph3.add_run(f"Всего жалоб, которые не успели проверить за сутки: {overdue_reports_number}\n"
                               f"Всего провереных вовремя жалоб: {resolved_reports_number}")
-    file_name = f"othchet2_{datatime_now.day}_{datatime_now.month}_{datatime_now.year}.docx"
+    file_name = f"Otchet_o_nevypolnenii_{datatime_now.day}_{datatime_now.month}_{datatime_now.year}.docx"
     otchet_2.save(file_name)
     return file_name
 

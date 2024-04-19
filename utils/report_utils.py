@@ -45,7 +45,7 @@ async def send_report_to_id(report_id: int, chat_id) -> int:
 
         msg = await bot.send_media_group(media=media_group.build(),
                                          chat_id=chat_id)
-        await bot.send_message(text="Чат в пользователем",
+        await bot.send_message(text="Чат с пользователем",
                                reply_markup=keyboards.get_user_contact_button(user.username),
                                chat_id=chat_id)
         return msg[0].message_id

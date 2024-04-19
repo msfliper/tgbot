@@ -10,7 +10,7 @@ from view import messages
 async def main():
     reports = get_last_24_hours_reports_to_notification()
     reports = [report for report in reports
-               if (datetime.datetime.now()-report.created_at).seconds//60 >= 5]
+               if ((datetime.datetime.now()-report.created_at).seconds - 10800)//60 >= 5]
     for report in reports:
         await bot.send_message(reply_to_message_id=report.message_id,
                                chat_id=settings.ADMIN_CHAT_ID,
